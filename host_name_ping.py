@@ -34,7 +34,7 @@ def Host_Name_Ping(host_path_file):
              unsuccessful.append(line)
 
 
-         my_dict = {'Successful':successful,'Unsuccessful':unsuccessful}
+         my_dict = {'Successful':successful,'Unsuccessful':unsuccessful,'count success':len(successful),'count fail':len(unsuccessful)}
          with open('test.csv','w')as f:
              for key in my_dict.keys():
                 f.write("%s,%s\n"%(key,my_dict[key]))
