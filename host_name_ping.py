@@ -48,4 +48,4 @@ def Host_Name_Ping(host_path_file):
             print("I/O error")
 
 
-Host_Name_Ping("C:\\Users\\T440P\\Documents\\Hosts.txt")               
+Host_Name_Ping("C:\\Users\\T440P\\Documents\\Hosts.txt")          
