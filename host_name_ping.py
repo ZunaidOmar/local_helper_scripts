@@ -2,6 +2,7 @@ import sys
 import os
 import subprocess
 import pandas as pd
+import csv
 
 
 def Host_Name_Ping(host_path_file):
@@ -33,11 +34,18 @@ def Host_Name_Ping(host_path_file):
          else:
              unsuccessful.append(line)
 
+         csv_columns = ['Successful','Unsuccessful','Success_Count','Fail_Count']
+         dict_data = [{'Successful':successful,'Unsuccessful':unsuccessful,'Success_Count':len(successful),'Fail_Count':len(unsuccessful)}]
+         
+         csv_file = "Hosts_results.csv"
+         try:
+               with open(csv_file, 'w',newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                writer.writeheader()
+                for data in dict_data:
+                    writer.writerow(data)
+         except IOError:
+            print("I/O error")
 
-         my_dict = {'Successful':successful,'Unsuccessful':unsuccessful,'count success':len(successful),'count fail':len(unsuccessful)}
-         with open('test.csv','w')as f:
-             for key in my_dict.keys():
-                f.write("%s,%s\n"%(key,my_dict[key]))
 
-
-Host_Name_Ping("C:\\Users\\T440P\\Documents\\Hosts.txt")               
+Host_Name_Ping("C:\\Users\\T440P\\Documents\\Hosts.txt")          
